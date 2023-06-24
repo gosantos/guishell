@@ -1,9 +1,11 @@
-import { FsWrapper, fsWrapper } from '../infra/FsWrapper.js';
+import { autoInjectable } from 'tsyringe';
+import { FsWrapper } from '../infra/FsWrapper.js';
 
 type ListFoldersAndFilesDependencies = {
   fsWrapper: FsWrapper;
 };
 
+@autoInjectable()
 export class ListFoldersAndFiles {
   private readonly fsWrapper: FsWrapper;
 
@@ -17,5 +19,3 @@ export class ListFoldersAndFiles {
     return this.fsWrapper.readdirSync(path);
   }
 }
-
-export const listFoldersAndFiles = new ListFoldersAndFiles({ fsWrapper });
