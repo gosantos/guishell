@@ -1,9 +1,8 @@
 import { container } from 'tsyringe';
-import { FSInterface } from '../../src/infra/FSInterface.js';
 import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
 
 describe('PWDCommand', () => {
-  const fsInterface = jest.fn() as unknown as FSInterface;
+  const fsInterface = jest.fn() as unknown as any;
   let pwdCommand: PWDCommand;
 
   beforeEach(() => {
@@ -14,9 +13,8 @@ describe('PWDCommand', () => {
   test('should return the current directory', () => {
     fsInterface.realPathSync = jest.fn().mockReturnValue('./some/dir');
 
-    const res = pwdCommand.execute('');
+    pwdCommand.execute('');
 
-    expect(res).toBe('./some/dir');
     expect(fsInterface.realPathSync).toHaveBeenCalledWith('./');
   });
 

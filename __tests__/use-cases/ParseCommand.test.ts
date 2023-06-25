@@ -1,5 +1,4 @@
 import { container } from 'tsyringe';
-import { FSInterface } from '../../src/infra/FSInterface.js';
 import { LSCommand } from '../../src/use-cases/LSCommand.js';
 import { ParseCommand } from '../../src/use-cases/ParseCommand.js';
 import { ExitCommand } from '../../src/use-cases/ExitCommand.js';
@@ -7,7 +6,7 @@ import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;
-  const fsInterface = jest.fn() as unknown as FSInterface;
+  const fsInterface = jest.fn() as unknown as any;
   const exitInterface = jest.fn();
   beforeEach(() => {
     jest.clearAllMocks();
