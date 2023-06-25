@@ -34,9 +34,10 @@ export class ParseCommand {
       '': this.noopCommand,
     };
 
-    return input.split('|').map((item) => {
+    return input.split('|').map((item: string) => {
       const [commandName, args] = item.split(' ');
       const command = mapCommandToRunner[commandName];
+
       if (!command) throw new Error('Command not found');
 
       return {

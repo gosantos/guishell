@@ -1,6 +1,7 @@
 import { autoInjectable, inject } from 'tsyringe';
 import { ParseCommand } from '../use-cases/ParseCommand.js';
 import { StdinInterface } from '../infra/StdinInterface.js';
+import { ParseCommandOutputType } from '../types/ParseCommandOutputType.js';
 
 @autoInjectable()
 export class Controller {
@@ -12,8 +13,12 @@ export class Controller {
   run(): void {
     this.stdinInterface.on('line', (input) => {
       try {
-        const { runner, args } = this.parseCommand.execute(input);
-        runner.execute(args);
+        this.parseCommand
+          .execute(input)
+          .forEach((command: ParseCommandOutputType) => {
+            const { runner, args } = command;
+            runner.execute(args);
+          });
       } catch (e) {
         console.error(e.message);
       }
