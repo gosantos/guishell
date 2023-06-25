@@ -7,6 +7,7 @@ import { FSInterface } from '../../src/infra/FSInterface.js';
 import { ExitInterface } from '../../src/infra/ExitInterface.js';
 import { CatCommand } from '../../src/use-cases/CatCommand.js';
 import { NoOpCommand } from '../../src/use-cases/NoOpCommand.js';
+import { HistoryCommand } from '../../src/use-cases/HistoryCommand.js';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;
@@ -77,6 +78,13 @@ describe('ParseCommand', () => {
     const { runner, args } = parseCommand.execute('');
 
     expect(runner).toBeInstanceOf(NoOpCommand);
+    expect(args).toBe(undefined);
+  });
+
+  test('should select history command', () => {
+    const { runner, args } = parseCommand.execute('history');
+
+    expect(runner).toBeInstanceOf(HistoryCommand);
     expect(args).toBe(undefined);
   });
 });
