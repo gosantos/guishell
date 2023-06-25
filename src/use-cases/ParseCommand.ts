@@ -10,20 +10,20 @@ export class ParseCommand {
     private readonly exitCommand: ExitCommand,
   ) {}
 
-  private mapCommandToRunner = {
-    ls: this.lsCommand,
-    exit: this.exitCommand,
-  };
-
   execute(input: string): ParseCommandOutputType {
+    const mapCommandToRunner = {
+      ls: this.lsCommand,
+      exit: this.exitCommand,
+    };
+
     const [commandName, args] = input.split(' ');
 
-    const command = this.mapCommandToRunner[commandName];
+    const command = mapCommandToRunner[commandName];
     if (!command) throw new Error('Command not found');
 
     return {
-      runner: command,
-      args,
+      runner: mapCommandToRunner[commandName],
+      args: args,
     };
   }
 }
