@@ -1,5 +1,6 @@
 import { FSInterface } from '../../src/infra/FSInterface.js';
 import { ListFoldersAndFiles } from '../../src/use-cases/ListFoldersAndFiles.js';
+import * as fs from 'fs';
 
 describe('ListFoldersAndFiles', () => {
   let listFoldersAndFiles: ListFoldersAndFiles;
@@ -17,5 +18,11 @@ describe('ListFoldersAndFiles', () => {
   test('should return an empty list when there are no files or folders', () => {
     fsInterface.readdirSync = jest.fn().mockReturnValue([]);
     expect(listFoldersAndFiles.execute('path')).toEqual([]);
+  });
+
+  test('should return an empty list when there is no path', () => {
+    const res = fs.readdirSync('./');
+
+    console.log({ res });
   });
 });

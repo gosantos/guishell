@@ -11,7 +11,9 @@ export class Controller {
 
   run(): void {
     this.stdinInterface.on('line', (line) => {
-      this.parseCommand.execute(line);
+      const commandRunner = this.parseCommand.execute(line);
+      const res = commandRunner.execute();
+      console.log({ res });
     });
   }
 }

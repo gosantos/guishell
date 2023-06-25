@@ -8,7 +8,9 @@ export class ParseCommand {
   constructor(private readonly listFoldersAndFiles: ListFoldersAndFiles) {}
 
   execute(command: string): CommandRunner {
-    if ('ls' === command) {
+    const [commandName, ..._args] = command.split(' ');
+    if ('ls' === commandName) {
+      console.log({ commandName, _args });
       return this.listFoldersAndFiles;
     } else {
       throw new Error('Command not found');

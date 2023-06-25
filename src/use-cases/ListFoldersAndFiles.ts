@@ -5,7 +5,8 @@ import { FSInterface } from '../infra/FSInterface.js';
 export class ListFoldersAndFiles {
   constructor(private readonly fsInterface: FSInterface) {}
 
-  execute(path: string): string[] {
-    return this.fsInterface.readdirSync(path);
+  execute(path = './'): void {
+    const res = this.fsInterface.readdirSync(path);
+    console.log(res.join('\n'));
   }
 }
