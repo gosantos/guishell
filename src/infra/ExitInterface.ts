@@ -1,3 +1,7 @@
 import { exit } from 'process';
 
-export const exitInterface = exit;
+export interface ExitInterface {
+  (code?: number): never;
+}
+
+export const exitInterface: ExitInterface = exit;

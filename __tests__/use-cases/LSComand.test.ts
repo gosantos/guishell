@@ -1,8 +1,9 @@
+import { FSInterface } from '../../src/infra/FSInterface.js';
 import { LSCommand } from '../../src/use-cases/LSCommand.js';
 
 describe('LSCommand', () => {
   let lsCommand: LSCommand;
-  const fsInterface = jest.fn() as unknown as any;
+  const fsInterface = jest.fn() as unknown as FSInterface;
 
   beforeEach(async () => {
     jest.clearAllMocks();

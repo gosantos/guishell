@@ -3,14 +3,16 @@ import { LSCommand } from '../../src/use-cases/LSCommand.js';
 import { ParseCommand } from '../../src/use-cases/ParseCommand.js';
 import { ExitCommand } from '../../src/use-cases/ExitCommand.js';
 import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
+import { FSInterface } from '../../src/infra/FSInterface.js';
+import { ExitInterface } from '../../src/infra/ExitInterface.js';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;
-  const fsInterface = jest.fn() as unknown as any;
-  const exitInterface = jest.fn();
+  const fsInterface = jest.fn() as unknown as FSInterface;
+  const exitInterface = jest.fn() as unknown as ExitInterface;
   beforeEach(() => {
     jest.clearAllMocks();
-    container.register('exitInterface', exitInterface);
+    container.register('exitInterface', { useValue: exitInterface });
     container.register('fsInterface', { useValue: fsInterface });
     container.resolve(LSCommand);
     container.resolve(ExitCommand);
@@ -53,7 +55,7 @@ describe('ParseCommand', () => {
   });
 
   test('should print current directory when pwd', () => {
-    fsInterface.realPathSync = jest.fn().mockReturnValue('./some/dir');
+    fsInterface.realpathSync = jest.fn().mockReturnValue('./some/dir');
     const { runner, args } = parseCommand.execute('pwd');
 
     expect(runner).toBeInstanceOf(PWDCommand);
