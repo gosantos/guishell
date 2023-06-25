@@ -10,10 +10,9 @@ export class Controller {
   ) {}
 
   run(): void {
-    this.stdinInterface.on('line', (line) => {
-      const commandRunner = this.parseCommand.execute(line);
-      const res = commandRunner.execute();
-      console.log({ res });
+    this.stdinInterface.on('line', (input) => {
+      const { runner, args } = this.parseCommand.execute(input);
+      runner.execute(args);
     });
   }
 }

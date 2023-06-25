@@ -1,17 +1,18 @@
 import { autoInjectable } from 'tsyringe';
 import { LSCommand } from './LSCommand.js';
-
-type CommandRunner = LSCommand;
+import { ParseCommandOutputType } from '../types/ParseCommandOutputType.js';
 
 @autoInjectable()
 export class ParseCommand {
-  constructor(private readonly listFoldersAndFiles: LSCommand) {}
+  constructor(private readonly lsCommand: LSCommand) {}
 
-  execute(command: string): CommandRunner {
-    const [commandName, ..._args] = command.split(' ');
+  execute(input: string): ParseCommandOutputType {
+    const [commandName, args] = input.split(' ');
     if ('ls' === commandName) {
-      console.log({ commandName, _args });
-      return this.listFoldersAndFiles;
+      return {
+        runner: this.lsCommand,
+        args: args,
+      };
     } else {
       throw new Error('Command not found');
     }

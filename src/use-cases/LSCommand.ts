@@ -6,7 +6,11 @@ export class LSCommand {
   constructor(private readonly fsInterface: FSInterface) {}
 
   execute(path = './'): void {
-    const res = this.fsInterface.readdirSync(path);
-    console.log(res.join('\n'));
+    try {
+      const res = this.fsInterface.readdirSync(path);
+      console.log(res.join('\n'));
+    } catch (error) {
+      console.log('Error: ', error.message);
+    }
   }
 }
