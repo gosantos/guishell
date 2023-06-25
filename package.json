@@ -1,7 +1,7 @@
 {
-  "name": "node-typescript-boilerplate",
-  "version": "0.0.0",
-  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "name": "guishell",
+  "version": "0.0.1",
+  "description": "shell like app runner with basic commands",
   "type": "module",
   "engines": {
     "node": ">= 18.12 <19"
@@ -36,10 +36,8 @@
     "test:watch": "jest --watch",
     "prepare": "husky install"
   },
-  "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@types/readline-sync": "^1.4.4",
     "reflect-metadata": "^0.1.13",
     "tslib": "~2.5",
     "tsyringe": "^4.8.0"
