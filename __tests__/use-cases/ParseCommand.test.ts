@@ -5,6 +5,8 @@ import { ExitCommand } from '../../src/use-cases/ExitCommand.js';
 import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
 import { FSInterface } from '../../src/infra/FSInterface.js';
 import { ExitInterface } from '../../src/infra/ExitInterface.js';
+import { CatCommand } from '../../src/use-cases/CatCommand.js';
+import { NoOpCommand } from '../../src/use-cases/NoOpCommand.js';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;
@@ -17,6 +19,8 @@ describe('ParseCommand', () => {
     container.resolve(LSCommand);
     container.resolve(ExitCommand);
     container.resolve(PWDCommand);
+    container.resolve(CatCommand);
+    container.resolve(NoOpCommand);
     parseCommand = container.resolve(ParseCommand);
   });
   test('should return a list of folders and files', () => {
@@ -59,6 +63,20 @@ describe('ParseCommand', () => {
     const { runner, args } = parseCommand.execute('pwd');
 
     expect(runner).toBeInstanceOf(PWDCommand);
+    expect(args).toBe(undefined);
+  });
+
+  test('should select cat command', () => {
+    const { runner, args } = parseCommand.execute('cat');
+
+    expect(runner).toBeInstanceOf(CatCommand);
+    expect(args).toBe(undefined);
+  });
+
+  test('should select noop command', () => {
+    const { runner, args } = parseCommand.execute('');
+
+    expect(runner).toBeInstanceOf(NoOpCommand);
     expect(args).toBe(undefined);
   });
 });

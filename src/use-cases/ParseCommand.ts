@@ -3,6 +3,8 @@ import { LSCommand } from './LSCommand.js';
 import { ParseCommandOutputType } from '../types/ParseCommandOutputType.js';
 import { ExitCommand } from './ExitCommand.js';
 import { PWDCommand } from './PWDCommand.js';
+import { CatCommand } from './CatCommand.js';
+import { NoOpCommand } from './NoOpCommand.js';
 
 @autoInjectable()
 export class ParseCommand {
@@ -10,13 +12,19 @@ export class ParseCommand {
     private readonly lsCommand: LSCommand,
     private readonly exitCommand: ExitCommand,
     private readonly pwdCommand: PWDCommand,
+    private readonly catCommand: CatCommand,
+    private readonly noopCommand: NoOpCommand,
   ) {}
 
   execute(input: string): ParseCommandOutputType {
+    input = input.trim();
+
     const mapCommandToRunner = {
       ls: this.lsCommand,
       exit: this.exitCommand,
       pwd: this.pwdCommand,
+      cat: this.catCommand,
+      '': this.noopCommand,
     };
 
     const [commandName, args] = input.split(' ');
