@@ -1,14 +1,14 @@
 import { FSInterface } from '../../src/infra/FSInterface.js';
-import { ListFoldersAndFiles } from '../../src/use-cases/ListFoldersAndFiles.js';
+import { LSCommand } from '../../src/use-cases/LSCommand.js';
 import * as fs from 'fs';
 
 describe('ListFoldersAndFiles', () => {
-  let listFoldersAndFiles: ListFoldersAndFiles;
+  let listFoldersAndFiles: LSCommand;
   const fsInterface = jest.fn() as unknown as FSInterface;
 
   beforeEach(async () => {
     jest.clearAllMocks();
-    listFoldersAndFiles = new ListFoldersAndFiles(fsInterface);
+    listFoldersAndFiles = new LSCommand(fsInterface);
   });
   test('should return a list of folders and files', () => {
     fsInterface.readdirSync = jest.fn().mockReturnValue(['folder1', 'folder2']);

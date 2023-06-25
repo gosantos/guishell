@@ -1,11 +1,11 @@
 import { autoInjectable } from 'tsyringe';
-import { ListFoldersAndFiles } from './ListFoldersAndFiles.js';
+import { LSCommand } from './LSCommand.js';
 
-type CommandRunner = ListFoldersAndFiles;
+type CommandRunner = LSCommand;
 
 @autoInjectable()
 export class ParseCommand {
-  constructor(private readonly listFoldersAndFiles: ListFoldersAndFiles) {}
+  constructor(private readonly listFoldersAndFiles: LSCommand) {}
 
   execute(command: string): CommandRunner {
     const [commandName, ..._args] = command.split(' ');

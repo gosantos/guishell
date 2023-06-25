@@ -2,7 +2,7 @@ import { autoInjectable } from 'tsyringe';
 import { FSInterface } from '../infra/FSInterface.js';
 
 @autoInjectable()
-export class ListFoldersAndFiles {
+export class LSCommand {
   constructor(private readonly fsInterface: FSInterface) {}
 
   execute(path = './'): void {
