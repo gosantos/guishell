@@ -18,11 +18,11 @@ container.register('fsInterface', { useValue: fsInterface });
 
 container.resolve(ExitCommand);
 container.resolve(LSCommand);
-container.resolve(ParseCommand);
+container.resolve(SaveCommand);
 container.resolve(CatCommand);
 container.resolve(NoOpCommand);
-container.resolve(SaveCommand);
 container.resolve(HistoryCommand);
+container.resolve(ParseCommand);
 const controller = container.resolve(Controller);
 
 controller.run();
