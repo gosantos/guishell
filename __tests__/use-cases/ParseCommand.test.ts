@@ -1,14 +1,14 @@
-import { FsWrapper } from '../../src/infra/FSInterface.js';
+import { FSInterface } from '../../src/infra/FSInterface.js';
 import { ListFoldersAndFiles } from '../../src/use-cases/ListFoldersAndFiles.js';
 import { ParseCommand } from '../../src/use-cases/ParseCommand.js';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;
   let listFoldersAndFiles: ListFoldersAndFiles;
-  const fsWrapper = jest.fn() as unknown as FsWrapper;
+  const fsWrapper = jest.fn() as unknown as FSInterface;
   beforeEach(() => {
     jest.clearAllMocks();
-    listFoldersAndFiles = new ListFoldersAndFiles({ fsWrapper });
+    listFoldersAndFiles = new ListFoldersAndFiles(fsWrapper);
     parseCommand = new ParseCommand({ listFoldersAndFiles });
   });
   test('should return a list of folders and files', () => {

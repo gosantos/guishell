@@ -1,21 +1,11 @@
 import { autoInjectable } from 'tsyringe';
-import { FsWrapper } from '../infra/FSInterface.js';
-
-type ListFoldersAndFilesDependencies = {
-  fsWrapper: FsWrapper;
-};
+import { FSInterface } from '../infra/FSInterface.js';
 
 @autoInjectable()
 export class ListFoldersAndFiles {
-  private readonly fsWrapper: FsWrapper;
-
-  constructor(
-    listFoldersAndFilesDependencies: ListFoldersAndFilesDependencies,
-  ) {
-    this.fsWrapper = listFoldersAndFilesDependencies.fsWrapper;
-  }
+  constructor(private readonly fsInterface: FSInterface) {}
 
   execute(path: string): string[] {
-    return this.fsWrapper.readdirSync(path);
+    return this.fsInterface.readdirSync(path);
   }
 }
