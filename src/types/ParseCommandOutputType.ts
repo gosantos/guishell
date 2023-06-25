@@ -1,3 +1,4 @@
+import { ExitCommand } from '../use-cases/ExitCommand.js';
 import { LSCommand } from '../use-cases/LSCommand.js';
 
 type LSCommandOutputType = {
@@ -5,4 +6,11 @@ type LSCommandOutputType = {
   args: string;
 };
 
-export type ParseCommandOutputType = LSCommandOutputType;
+type ExitCommandOutputType = {
+  runner: ExitCommand;
+  args: string;
+};
+
+export type ParseCommandOutputType =
+  | LSCommandOutputType
+  | ExitCommandOutputType;
