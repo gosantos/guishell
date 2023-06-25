@@ -20,10 +20,8 @@ export class ParseCommand {
     private readonly saveCommand: SaveCommand,
   ) {}
 
-  execute(input: string): ParseCommandOutputType {
+  execute(input: string): ParseCommandOutputType[] {
     this.saveCommand.execute(input);
-
-    input = input.trim();
 
     const mapCommandToRunner: {
       [key: string]: ParseCommandOutputType['runner'];
@@ -36,14 +34,15 @@ export class ParseCommand {
       '': this.noopCommand,
     };
 
-    const [commandName, args] = input.split(' ');
+    return input.split('|').map((item) => {
+      const [commandName, args] = item.split(' ');
+      const command = mapCommandToRunner[commandName];
+      if (!command) throw new Error('Command not found');
 
-    const command = mapCommandToRunner[commandName];
-    if (!command) throw new Error('Command not found');
-
-    return {
-      runner: mapCommandToRunner[commandName],
-      args: args,
-    };
+      return {
+        runner: command,
+        args: (args || '').trim(),
+      };
+    });
   }
 }

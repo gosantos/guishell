@@ -34,10 +34,10 @@ describe('ParseCommand', () => {
   });
   test('should return a list of folders and files', () => {
     const input = 'ls';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(LSCommand);
-    expect(args).toBeUndefined();
+    expect(args).toBe('');
     expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
       'history.txt',
       input + '\n',
@@ -47,7 +47,7 @@ describe('ParseCommand', () => {
   test('should return an empty list when there are no files or folders', () => {
     fsInterface.readdirSync = jest.fn().mockReturnValue([]);
     const input = 'ls foo';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(LSCommand);
     expect(args).toBe('foo');
@@ -69,10 +69,10 @@ describe('ParseCommand', () => {
 
   test('should return an exit command', () => {
     const input = 'exit';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(ExitCommand);
-    expect(args).toBeUndefined();
+    expect(args).toBe('');
     expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
       'history.txt',
       input + '\n',
@@ -81,7 +81,7 @@ describe('ParseCommand', () => {
 
   test('should return an exit command with args', () => {
     const input = 'exit 1';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(ExitCommand);
     expect(args).toBe('1');
@@ -94,10 +94,10 @@ describe('ParseCommand', () => {
   test('should print current directory when pwd', () => {
     fsInterface.realpathSync = jest.fn().mockReturnValue('./some/dir');
     const input = 'pwd';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(PWDCommand);
-    expect(args).toBe(undefined);
+    expect(args).toBe('');
     expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
       'history.txt',
       input + '\n',
@@ -106,10 +106,10 @@ describe('ParseCommand', () => {
 
   test('should select cat command', () => {
     const input = 'cat';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(CatCommand);
-    expect(args).toBe(undefined);
+    expect(args).toBe('');
     expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
       'history.txt',
       input + '\n',
@@ -118,10 +118,10 @@ describe('ParseCommand', () => {
 
   test('should select noop command', () => {
     const input = '';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(NoOpCommand);
-    expect(args).toBe(undefined);
+    expect(args).toBe('');
     expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
       'history.txt',
       input + '\n',
@@ -130,10 +130,10 @@ describe('ParseCommand', () => {
 
   test('should select history command', () => {
     const input = 'history';
-    const { runner, args } = parseCommand.execute(input);
+    const { runner, args } = parseCommand.execute(input)[0];
 
     expect(runner).toBeInstanceOf(HistoryCommand);
-    expect(args).toBe(undefined);
+    expect(args).toBe('');
     expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
       'history.txt',
       input + '\n',
