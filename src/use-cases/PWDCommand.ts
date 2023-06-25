@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { FSInterface } from '../infra/FSInterface.js';
+import { FSInterface } from '../infra/FSInterface';
 
 @injectable()
 export class PWDCommand {

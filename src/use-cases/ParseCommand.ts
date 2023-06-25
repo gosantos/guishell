@@ -1,12 +1,12 @@
 import { autoInjectable } from 'tsyringe';
-import { LSCommand } from './LSCommand.js';
-import { ParseCommandOutputType } from '../types/ParseCommandOutputType.js';
-import { ExitCommand } from './ExitCommand.js';
-import { PWDCommand } from './PWDCommand.js';
-import { CatCommand } from './CatCommand.js';
-import { NoOpCommand } from './NoOpCommand.js';
-import { HistoryCommand } from './HistoryCommand.js';
-import { SaveCommand } from './SaveCommand.js';
+import { LSCommand } from './LSCommand';
+import { ParseCommandOutputType } from '../types/ParseCommandOutputType';
+import { ExitCommand } from './ExitCommand';
+import { PWDCommand } from './PWDCommand';
+import { CatCommand } from './CatCommand';
+import { NoOpCommand } from './NoOpCommand';
+import { HistoryCommand } from './HistoryCommand';
+import { SaveCommand } from './SaveCommand';
 
 @autoInjectable()
 export class ParseCommand {

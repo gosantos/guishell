@@ -1,5 +1,5 @@
 import { autoInjectable, inject } from 'tsyringe';
-import { FSInterface } from '../infra/FSInterface.js';
+import { FSInterface } from '../infra/FSInterface';
 
 @autoInjectable()
 export class SaveCommand {

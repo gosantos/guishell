@@ -1,14 +1,14 @@
 import { container } from 'tsyringe';
-import { LSCommand } from '../../src/use-cases/LSCommand.js';
-import { ParseCommand } from '../../src/use-cases/ParseCommand.js';
-import { ExitCommand } from '../../src/use-cases/ExitCommand.js';
-import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
-import { FSInterface } from '../../src/infra/FSInterface.js';
-import { ExitInterface } from '../../src/infra/ExitInterface.js';
-import { CatCommand } from '../../src/use-cases/CatCommand.js';
-import { NoOpCommand } from '../../src/use-cases/NoOpCommand.js';
-import { HistoryCommand } from '../../src/use-cases/HistoryCommand.js';
-import { SaveCommand } from '../../src/use-cases/SaveCommand.js';
+import { LSCommand } from '../../src/use-cases/LSCommand';
+import { ParseCommand } from '../../src/use-cases/ParseCommand';
+import { ExitCommand } from '../../src/use-cases/ExitCommand';
+import { PWDCommand } from '../../src/use-cases/PWDCommand';
+import { FSInterface } from '../../src/infra/FSInterface';
+import { ExitInterface } from '../../src/infra/ExitInterface';
+import { CatCommand } from '../../src/use-cases/CatCommand';
+import { NoOpCommand } from '../../src/use-cases/NoOpCommand';
+import { HistoryCommand } from '../../src/use-cases/HistoryCommand';
+import { SaveCommand } from '../../src/use-cases/SaveCommand';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;

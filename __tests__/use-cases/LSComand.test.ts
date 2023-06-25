@@ -1,5 +1,5 @@
-import { FSInterface } from '../../src/infra/FSInterface.js';
-import { LSCommand } from '../../src/use-cases/LSCommand.js';
+import { FSInterface } from '../../src/infra/FSInterface';
+import { LSCommand } from '../../src/use-cases/LSCommand';
 
 describe('LSCommand', () => {
   let lsCommand: LSCommand;

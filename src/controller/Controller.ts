@@ -1,7 +1,7 @@
 import { autoInjectable, inject } from 'tsyringe';
-import { ParseCommand } from '../use-cases/ParseCommand.js';
-import { StdinInterface } from '../infra/StdinInterface.js';
-import { ParseCommandOutputType } from '../types/ParseCommandOutputType.js';
+import { ParseCommand } from '../use-cases/ParseCommand';
+import { StdinInterface } from '../infra/StdinInterface';
+import { ParseCommandOutputType } from '../types/ParseCommandOutputType';
 
 @autoInjectable()
 export class Controller {

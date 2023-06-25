@@ -1,5 +1,5 @@
 import { autoInjectable, inject } from 'tsyringe';
-import { ExitInterface } from '../infra/ExitInterface.js';
+import { ExitInterface } from '../infra/ExitInterface';
 
 @autoInjectable()
 export class ExitCommand {

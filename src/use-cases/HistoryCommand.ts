@@ -1,5 +1,5 @@
 import { autoInjectable } from 'tsyringe';
-import { CatCommand } from './CatCommand.js';
+import { CatCommand } from './CatCommand';
 
 @autoInjectable()
 export class HistoryCommand {

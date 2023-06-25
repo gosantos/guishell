@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
-import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
-import { FSInterface } from '../../src/infra/FSInterface.js';
+import { PWDCommand } from '../../src/use-cases/PWDCommand';
+import { FSInterface } from '../../src/infra/FSInterface';
 
 describe('PWDCommand', () => {
   const fsInterface = jest.fn() as unknown as FSInterface;

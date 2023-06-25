@@ -1,9 +1,9 @@
-import { CatCommand } from '../use-cases/CatCommand.js';
-import { ExitCommand } from '../use-cases/ExitCommand.js';
-import { LSCommand } from '../use-cases/LSCommand.js';
-import { PWDCommand } from '../use-cases/PWDCommand.js';
-import { HistoryCommand } from '../use-cases/HistoryCommand.js';
-import { NoOpCommand } from '../use-cases/NoOpCommand.js';
+import { CatCommand } from '../use-cases/CatCommand';
+import { ExitCommand } from '../use-cases/ExitCommand';
+import { LSCommand } from '../use-cases/LSCommand';
+import { PWDCommand } from '../use-cases/PWDCommand';
+import { HistoryCommand } from '../use-cases/HistoryCommand';
+import { NoOpCommand } from '../use-cases/NoOpCommand';
 
 type Runner =
   | LSCommand

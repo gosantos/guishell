@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import { ExitCommand } from '../../src/use-cases/ExitCommand.js';
+import { ExitCommand } from '../../src/use-cases/ExitCommand';
 
 describe('ExitCommand', () => {
   const exitInterface = jest.fn();
