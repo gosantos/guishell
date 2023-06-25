@@ -3,6 +3,7 @@ import { FSInterface } from '../../src/infra/FSInterface.js';
 import { LSCommand } from '../../src/use-cases/LSCommand.js';
 import { ParseCommand } from '../../src/use-cases/ParseCommand.js';
 import { ExitCommand } from '../../src/use-cases/ExitCommand.js';
+import { PWDCommand } from '../../src/use-cases/PWDCommand.js';
 
 describe('ParseCommand', () => {
   let parseCommand: ParseCommand;
@@ -11,9 +12,10 @@ describe('ParseCommand', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     container.register('exitInterface', exitInterface);
-    container.registerInstance('FSInterface', fsInterface);
+    container.register('fsInterface', { useValue: fsInterface });
     container.resolve(LSCommand);
     container.resolve(ExitCommand);
+    container.resolve(PWDCommand);
     parseCommand = container.resolve(ParseCommand);
   });
   test('should return a list of folders and files', () => {
@@ -49,5 +51,13 @@ describe('ParseCommand', () => {
 
     expect(runner).toBeInstanceOf(ExitCommand);
     expect(args).toBe('1');
+  });
+
+  test('should print current directory when pwd', () => {
+    fsInterface.realPathSync = jest.fn().mockReturnValue('./some/dir');
+    const { runner, args } = parseCommand.execute('pwd');
+
+    expect(runner).toBeInstanceOf(PWDCommand);
+    expect(args).toBe(undefined);
   });
 });

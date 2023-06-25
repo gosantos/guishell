@@ -10,9 +10,11 @@ export class Controller {
   ) {}
 
   run(): void {
+    process.stdout.write('guishell$ ');
     this.stdinInterface.on('line', (input) => {
       const { runner, args } = this.parseCommand.execute(input);
       runner.execute(args);
+      process.stdout.write('guishell$ ');
     });
   }
 }

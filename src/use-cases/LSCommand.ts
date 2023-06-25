@@ -1,9 +1,11 @@
-import { autoInjectable } from 'tsyringe';
+import { autoInjectable, inject } from 'tsyringe';
 import { FSInterface } from '../infra/FSInterface.js';
 
 @autoInjectable()
 export class LSCommand {
-  constructor(private readonly fsInterface: FSInterface) {}
+  constructor(
+    @inject('fsInterface') private readonly fsInterface: FSInterface,
+  ) {}
 
   execute(path = './'): void {
     try {
