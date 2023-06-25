@@ -9,7 +9,7 @@ describe('ParseCommand', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     listFoldersAndFiles = new ListFoldersAndFiles(fsWrapper);
-    parseCommand = new ParseCommand({ listFoldersAndFiles });
+    parseCommand = new ParseCommand(listFoldersAndFiles);
   });
   test('should return a list of folders and files', () => {
     fsWrapper.readdirSync = jest.fn().mockReturnValue(['folder1', 'folder2']);
