@@ -25,13 +25,15 @@ export class ParseCommand {
 
     input = input.trim();
 
-    const mapCommandToRunner = {
+    const mapCommandToRunner: {
+      [key: string]: ParseCommandOutputType['runner'];
+    } = {
       ls: this.lsCommand,
       exit: this.exitCommand,
       pwd: this.pwdCommand,
       cat: this.catCommand,
-      '': this.noopCommand,
       history: this.historyCommand,
+      '': this.noopCommand,
     };
 
     const [commandName, args] = input.split(' ');
