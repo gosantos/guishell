@@ -1,0 +1,5 @@
+cat package.json
+history
+ls
+pwd
+foo

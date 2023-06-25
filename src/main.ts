@@ -9,6 +9,8 @@ import { ExitCommand } from './use-cases/ExitCommand.js';
 import { fsInterface } from './infra/FSInterface.js';
 import { CatCommand } from './use-cases/CatCommand.js';
 import { NoOpCommand } from './use-cases/NoOpCommand.js';
+import { SaveCommand } from './use-cases/SaveCommand.js';
+import { HistoryCommand } from './use-cases/HistoryCommand.js';
 
 container.register('stdinInterface', { useValue: stdinInterface });
 container.register('exitInterface', { useValue: exitInterface });
@@ -19,6 +21,8 @@ container.resolve(LSCommand);
 container.resolve(ParseCommand);
 container.resolve(CatCommand);
 container.resolve(NoOpCommand);
+container.resolve(SaveCommand);
+container.resolve(HistoryCommand);
 const controller = container.resolve(Controller);
 
 controller.run();

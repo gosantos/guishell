@@ -5,6 +5,8 @@ import { ExitCommand } from './ExitCommand.js';
 import { PWDCommand } from './PWDCommand.js';
 import { CatCommand } from './CatCommand.js';
 import { NoOpCommand } from './NoOpCommand.js';
+import { HistoryCommand } from './HistoryCommand.js';
+import { SaveCommand } from './SaveCommand.js';
 
 @autoInjectable()
 export class ParseCommand {
@@ -14,9 +16,13 @@ export class ParseCommand {
     private readonly pwdCommand: PWDCommand,
     private readonly catCommand: CatCommand,
     private readonly noopCommand: NoOpCommand,
+    private readonly historyCommand: HistoryCommand,
+    private readonly saveCommand: SaveCommand,
   ) {}
 
   execute(input: string): ParseCommandOutputType {
+    this.saveCommand.execute(input);
+
     input = input.trim();
 
     const mapCommandToRunner = {
@@ -25,6 +31,7 @@ export class ParseCommand {
       pwd: this.pwdCommand,
       cat: this.catCommand,
       '': this.noopCommand,
+      history: this.historyCommand,
     };
 
     const [commandName, args] = input.split(' ');
