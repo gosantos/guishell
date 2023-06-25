@@ -1,5 +1,5 @@
 import { autoInjectable } from 'tsyringe';
-import { FsWrapper } from '../infra/FsWrapper.js';
+import { FsWrapper } from '../infra/FSInterface.js';
 
 type ListFoldersAndFilesDependencies = {
   fsWrapper: FsWrapper;

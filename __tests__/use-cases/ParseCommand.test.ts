@@ -1,4 +1,4 @@
-import { FsWrapper } from '../../src/infra/FsWrapper.js';
+import { FsWrapper } from '../../src/infra/FSInterface.js';
 import { ListFoldersAndFiles } from '../../src/use-cases/ListFoldersAndFiles.js';
 import { ParseCommand } from '../../src/use-cases/ParseCommand.js';
 
