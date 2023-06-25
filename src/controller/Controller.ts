@@ -13,12 +13,12 @@ export class Controller {
   run(): void {
     this.stdinInterface.on('line', (input) => {
       try {
-        this.parseCommand
-          .execute(input)
-          .forEach((command: ParseCommandOutputType) => {
-            const { runner, args } = command;
-            runner.execute(args);
-          });
+        const commands = this.parseCommand.execute(input);
+        console.log({ commands });
+        commands.forEach((command: ParseCommandOutputType) => {
+          const { runner, args } = command;
+          runner.execute(args);
+        });
       } catch (e) {
         console.error(e.message);
       }

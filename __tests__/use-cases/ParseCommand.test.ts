@@ -139,4 +139,20 @@ describe('ParseCommand', () => {
       input + '\n',
     );
   });
+
+  test('should parse a ls and a cat command with a pipe', () => {
+    const input = 'ls | cat filename.txt';
+    const commands = parseCommand.execute(input);
+
+    expect(commands[0].runner).toBeInstanceOf(LSCommand);
+    expect(commands[0].args).toBe('');
+
+    expect(commands[1].runner).toBeInstanceOf(CatCommand);
+    expect(commands[1].args).toBe('filename.txt');
+
+    expect(fsInterface.appendFileSync).toHaveBeenCalledWith(
+      'history.txt',
+      input + '\n',
+    );
+  });
 });

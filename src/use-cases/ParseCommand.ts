@@ -35,7 +35,7 @@ export class ParseCommand {
     };
 
     return input.split('|').map((item: string) => {
-      const [commandName, args] = item.split(' ');
+      const [commandName, args] = item.trim().split(' ');
       const command = mapCommandToRunner[commandName];
 
       if (!command) throw new Error('Command not found');
