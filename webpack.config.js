@@ -1,14 +1,11 @@
-import * as path from 'path';
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-const __dirname = path.resolve();
-// exclude license
 module.exports = {
   entry: './src/main.ts',
   mode: 'production',
-  target: 'node16',
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
+  externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
+  externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   module: {
     rules: [
       {
@@ -17,6 +14,9 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',
