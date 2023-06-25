@@ -14,7 +14,6 @@ export class Controller {
     this.stdinInterface.on('line', (input) => {
       try {
         const commands = this.parseCommand.execute(input);
-        console.log({ commands });
         commands.forEach((command: ParseCommandOutputType) => {
           const { runner, args } = command;
           runner.execute(args);
